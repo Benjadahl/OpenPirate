@@ -3,8 +3,8 @@ var socket = io();
 var ship = new Image();
 var c = document.getElementById("gameCanvas");
 var gameCanvas = c.getContext("2d");
-var player = {x : 0, y : 0, vX : 0, vY : 0, speed : 0.1};
-var keys = {37 : 0, 39 : 0};
+var player = {"x" : 0, "y" : 0, "velocity": 0, "speed" : 0.1};
+var keys = {83 : 0, 87 : 0};
 
 ship.src = "Ship.png";
 
@@ -26,16 +26,15 @@ function render(){
 
 var gameLoop = setInterval(function (){
     //Gamelogic
-    var move = -keys[37] + keys[39];
-
-    player.vY = move * player.speed;
+    var move = -keys[87] + keys[83];
     
-    console.log(move);
+    
+    socket.emit('velocityChange', move);
 
-    player.x += player.vX;
-    player.y += player.vY;
+    console.log(player.y);
+
 
     render();
     
-}, 100);
+}, 50);
 
