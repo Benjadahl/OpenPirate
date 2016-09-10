@@ -6,6 +6,15 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+
+app.get('/client.js', function(req, res){
+  res.sendFile(__dirname + '/client.js');
+});
+
+app.get('/ship.png', function(req, res){
+  res.sendFile(__dirname + '/Assets/Ship.png');
+});
+
 var players = {};
 
 function addPlayer(id, hp, x, y, velocity, orientation){
