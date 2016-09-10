@@ -1,13 +1,23 @@
 var socket = io();
 
-var img = new Image();
+var ship = new Image();
 var c = document.getElementById("gameCanvas");
-var ctx = c.getContext("2d");
+var gameCanvas = c.getContext("2d");
+var player = {x : 0, y : 0}
 
-img.src = "Ship.png";
+ship.src = "Ship.png";
 
 
 
-img.onload = function () {
-    ctx.drawImage(img, 0, 0);
+
+
+function render(){
+    gameCanvas.clearRect(0, 0, c.width, c.height);
+    gameCanvas.drawImage(ship, player.x, player.y);
 }
+
+var gameLoop = setInterval(function (){
+    render();
+    player.x++;
+}, 50);
+
