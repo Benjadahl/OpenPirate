@@ -17,24 +17,28 @@ document.body.addEventListener('keydown', function (e) {
 document.body.addEventListener('keyup', function (e) {
     keys[e.keyCode] = 0;
 });
-     
+
 
 function render(){
     gameCanvas.clearRect(0, 0, c.width, c.height);
+		gameCanvas.save();
+		var degrees = -50;
+		gameCanvas.rotate(degrees*Math.PI/180);
     gameCanvas.drawImage(ship, player.x, player.y);
+		gameCanvas.restore();
 }
 
 var gameLoop = setInterval(function (){
     //Gamelogic
     var move = -keys[87] + keys[83];
-    
-    
+
+
     socket.emit('velocityChange', move);
 
     console.log(player.y);
 
 
     render();
-    
+
 }, 50);
 
